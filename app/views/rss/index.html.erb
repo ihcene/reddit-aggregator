@@ -1,0 +1,8 @@
+<ul>
+<%- @entries.each do |entry| -%>
+  <li>
+    <%= entry.comments %> - <%= link_to entry.title, entry.uri %><br />
+    <small><strong><% if entry.category != "programming" and entry.category != params[:category] %>[<%= link_to entry.category, :category => entry.category %>]<% end %></strong> <%= time_ago_in_words(entry.updated_at) %> ago</small>
+  </li>
+<%- end -%>
+</ul>
