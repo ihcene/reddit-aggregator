@@ -34,7 +34,7 @@ class RssController < ApplicationController
       feed_parsed = RSS::Parser.parse(feed_content, false)
 
       feed_parsed.items.map do |item|
-        /\[(\d+)/.match(item.description)
+        /\[(\d+) comment/.match(item.description)
         nb = $1.to_i
         e = Entry.find_or_create_by_title_and_category(:title => item.title.slice(0..254), :category => reddit, :uri => item.link, :comments => nb)
       
